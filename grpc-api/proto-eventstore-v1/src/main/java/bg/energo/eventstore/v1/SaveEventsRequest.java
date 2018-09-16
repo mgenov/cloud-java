@@ -5,28 +5,24 @@ package bg.energo.eventstore.v1;
 
 /**
  * <pre>
- * Represents an Aggregate in the context of DDD.
- * Aggregates in DDD are defined as cluster of objects that can be treated as single unit.
- * A typical example for such object is Order and it's line items.
- * The Aggregate is holding binary content as it will let the client to build the aggregate using
- * the received event payloads.
+ * The request containing aggregate metadata and events in binary format for persisting them
+ * in the eventstore.
  * </pre>
  *
- * Protobuf type {@code bg.energo.eventstore.v1.Aggregate}
+ * Protobuf type {@code bg.energo.eventstore.v1.SaveEventsRequest}
  */
-public  final class Aggregate extends
+public  final class SaveEventsRequest extends
     com.google.protobuf.GeneratedMessageV3 implements
-    // @@protoc_insertion_point(message_implements:bg.energo.eventstore.v1.Aggregate)
-    AggregateOrBuilder {
+    // @@protoc_insertion_point(message_implements:bg.energo.eventstore.v1.SaveEventsRequest)
+    SaveEventsRequestOrBuilder {
 private static final long serialVersionUID = 0L;
-  // Use Aggregate.newBuilder() to construct.
-  private Aggregate(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+  // Use SaveEventsRequest.newBuilder() to construct.
+  private SaveEventsRequest(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
     super(builder);
   }
-  private Aggregate() {
+  private SaveEventsRequest() {
     aggregateId_ = "";
     aggregateType_ = "";
-    snapshot_ = com.google.protobuf.ByteString.EMPTY;
     version_ = 0;
     events_ = java.util.Collections.emptyList();
   }
@@ -36,7 +32,7 @@ private static final long serialVersionUID = 0L;
   getUnknownFields() {
     return this.unknownFields;
   }
-  private Aggregate(
+  private SaveEventsRequest(
       com.google.protobuf.CodedInputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
@@ -74,20 +70,15 @@ private static final long serialVersionUID = 0L;
             aggregateType_ = s;
             break;
           }
-          case 26: {
-
-            snapshot_ = input.readBytes();
-            break;
-          }
-          case 32: {
+          case 24: {
 
             version_ = input.readInt32();
             break;
           }
-          case 42: {
-            if (!((mutable_bitField0_ & 0x00000010) == 0x00000010)) {
+          case 34: {
+            if (!((mutable_bitField0_ & 0x00000008) == 0x00000008)) {
               events_ = new java.util.ArrayList<bg.energo.eventstore.v1.EventPayload>();
-              mutable_bitField0_ |= 0x00000010;
+              mutable_bitField0_ |= 0x00000008;
             }
             events_.add(
                 input.readMessage(bg.energo.eventstore.v1.EventPayload.parser(), extensionRegistry));
@@ -101,7 +92,7 @@ private static final long serialVersionUID = 0L;
       throw new com.google.protobuf.InvalidProtocolBufferException(
           e).setUnfinishedMessage(this);
     } finally {
-      if (((mutable_bitField0_ & 0x00000010) == 0x00000010)) {
+      if (((mutable_bitField0_ & 0x00000008) == 0x00000008)) {
         events_ = java.util.Collections.unmodifiableList(events_);
       }
       this.unknownFields = unknownFields.build();
@@ -110,14 +101,14 @@ private static final long serialVersionUID = 0L;
   }
   public static final com.google.protobuf.Descriptors.Descriptor
       getDescriptor() {
-    return bg.energo.eventstore.v1.Eventstore.internal_static_bg_energo_eventstore_v1_Aggregate_descriptor;
+    return bg.energo.eventstore.v1.Eventstore.internal_static_bg_energo_eventstore_v1_SaveEventsRequest_descriptor;
   }
 
   protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internalGetFieldAccessorTable() {
-    return bg.energo.eventstore.v1.Eventstore.internal_static_bg_energo_eventstore_v1_Aggregate_fieldAccessorTable
+    return bg.energo.eventstore.v1.Eventstore.internal_static_bg_energo_eventstore_v1_SaveEventsRequest_fieldAccessorTable
         .ensureFieldAccessorsInitialized(
-            bg.energo.eventstore.v1.Aggregate.class, bg.energo.eventstore.v1.Aggregate.Builder.class);
+            bg.energo.eventstore.v1.SaveEventsRequest.class, bg.energo.eventstore.v1.SaveEventsRequest.Builder.class);
   }
 
   private int bitField0_;
@@ -205,40 +196,27 @@ private static final long serialVersionUID = 0L;
     }
   }
 
-  public static final int SNAPSHOT_FIELD_NUMBER = 3;
-  private com.google.protobuf.ByteString snapshot_;
-  /**
-   * <pre>
-   * Binary snapshot of the aggregate which to be used as initial state.
-   * </pre>
-   *
-   * <code>bytes snapshot = 3;</code>
-   */
-  public com.google.protobuf.ByteString getSnapshot() {
-    return snapshot_;
-  }
-
-  public static final int VERSION_FIELD_NUMBER = 4;
+  public static final int VERSION_FIELD_NUMBER = 3;
   private int version_;
   /**
    * <pre>
-   * The version of the aggregate. During writing is used to perform a consistent read-modify-write.
+   * Used to perform a consistent read-modify-write.
    * </pre>
    *
-   * <code>int32 version = 4;</code>
+   * <code>int32 version = 3;</code>
    */
   public int getVersion() {
     return version_;
   }
 
-  public static final int EVENTS_FIELD_NUMBER = 5;
+  public static final int EVENTS_FIELD_NUMBER = 4;
   private java.util.List<bg.energo.eventstore.v1.EventPayload> events_;
   /**
    * <pre>
    * List of events associated with aggregate.
    * </pre>
    *
-   * <code>repeated .bg.energo.eventstore.v1.EventPayload events = 5;</code>
+   * <code>repeated .bg.energo.eventstore.v1.EventPayload events = 4;</code>
    */
   public java.util.List<bg.energo.eventstore.v1.EventPayload> getEventsList() {
     return events_;
@@ -248,7 +226,7 @@ private static final long serialVersionUID = 0L;
    * List of events associated with aggregate.
    * </pre>
    *
-   * <code>repeated .bg.energo.eventstore.v1.EventPayload events = 5;</code>
+   * <code>repeated .bg.energo.eventstore.v1.EventPayload events = 4;</code>
    */
   public java.util.List<? extends bg.energo.eventstore.v1.EventPayloadOrBuilder> 
       getEventsOrBuilderList() {
@@ -259,7 +237,7 @@ private static final long serialVersionUID = 0L;
    * List of events associated with aggregate.
    * </pre>
    *
-   * <code>repeated .bg.energo.eventstore.v1.EventPayload events = 5;</code>
+   * <code>repeated .bg.energo.eventstore.v1.EventPayload events = 4;</code>
    */
   public int getEventsCount() {
     return events_.size();
@@ -269,7 +247,7 @@ private static final long serialVersionUID = 0L;
    * List of events associated with aggregate.
    * </pre>
    *
-   * <code>repeated .bg.energo.eventstore.v1.EventPayload events = 5;</code>
+   * <code>repeated .bg.energo.eventstore.v1.EventPayload events = 4;</code>
    */
   public bg.energo.eventstore.v1.EventPayload getEvents(int index) {
     return events_.get(index);
@@ -279,7 +257,7 @@ private static final long serialVersionUID = 0L;
    * List of events associated with aggregate.
    * </pre>
    *
-   * <code>repeated .bg.energo.eventstore.v1.EventPayload events = 5;</code>
+   * <code>repeated .bg.energo.eventstore.v1.EventPayload events = 4;</code>
    */
   public bg.energo.eventstore.v1.EventPayloadOrBuilder getEventsOrBuilder(
       int index) {
@@ -304,14 +282,11 @@ private static final long serialVersionUID = 0L;
     if (!getAggregateTypeBytes().isEmpty()) {
       com.google.protobuf.GeneratedMessageV3.writeString(output, 2, aggregateType_);
     }
-    if (!snapshot_.isEmpty()) {
-      output.writeBytes(3, snapshot_);
-    }
     if (version_ != 0) {
-      output.writeInt32(4, version_);
+      output.writeInt32(3, version_);
     }
     for (int i = 0; i < events_.size(); i++) {
-      output.writeMessage(5, events_.get(i));
+      output.writeMessage(4, events_.get(i));
     }
     unknownFields.writeTo(output);
   }
@@ -327,17 +302,13 @@ private static final long serialVersionUID = 0L;
     if (!getAggregateTypeBytes().isEmpty()) {
       size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, aggregateType_);
     }
-    if (!snapshot_.isEmpty()) {
-      size += com.google.protobuf.CodedOutputStream
-        .computeBytesSize(3, snapshot_);
-    }
     if (version_ != 0) {
       size += com.google.protobuf.CodedOutputStream
-        .computeInt32Size(4, version_);
+        .computeInt32Size(3, version_);
     }
     for (int i = 0; i < events_.size(); i++) {
       size += com.google.protobuf.CodedOutputStream
-        .computeMessageSize(5, events_.get(i));
+        .computeMessageSize(4, events_.get(i));
     }
     size += unknownFields.getSerializedSize();
     memoizedSize = size;
@@ -349,18 +320,16 @@ private static final long serialVersionUID = 0L;
     if (obj == this) {
      return true;
     }
-    if (!(obj instanceof bg.energo.eventstore.v1.Aggregate)) {
+    if (!(obj instanceof bg.energo.eventstore.v1.SaveEventsRequest)) {
       return super.equals(obj);
     }
-    bg.energo.eventstore.v1.Aggregate other = (bg.energo.eventstore.v1.Aggregate) obj;
+    bg.energo.eventstore.v1.SaveEventsRequest other = (bg.energo.eventstore.v1.SaveEventsRequest) obj;
 
     boolean result = true;
     result = result && getAggregateId()
         .equals(other.getAggregateId());
     result = result && getAggregateType()
         .equals(other.getAggregateType());
-    result = result && getSnapshot()
-        .equals(other.getSnapshot());
     result = result && (getVersion()
         == other.getVersion());
     result = result && getEventsList()
@@ -380,8 +349,6 @@ private static final long serialVersionUID = 0L;
     hash = (53 * hash) + getAggregateId().hashCode();
     hash = (37 * hash) + AGGREGATETYPE_FIELD_NUMBER;
     hash = (53 * hash) + getAggregateType().hashCode();
-    hash = (37 * hash) + SNAPSHOT_FIELD_NUMBER;
-    hash = (53 * hash) + getSnapshot().hashCode();
     hash = (37 * hash) + VERSION_FIELD_NUMBER;
     hash = (53 * hash) + getVersion();
     if (getEventsCount() > 0) {
@@ -393,69 +360,69 @@ private static final long serialVersionUID = 0L;
     return hash;
   }
 
-  public static bg.energo.eventstore.v1.Aggregate parseFrom(
+  public static bg.energo.eventstore.v1.SaveEventsRequest parseFrom(
       java.nio.ByteBuffer data)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data);
   }
-  public static bg.energo.eventstore.v1.Aggregate parseFrom(
+  public static bg.energo.eventstore.v1.SaveEventsRequest parseFrom(
       java.nio.ByteBuffer data,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data, extensionRegistry);
   }
-  public static bg.energo.eventstore.v1.Aggregate parseFrom(
+  public static bg.energo.eventstore.v1.SaveEventsRequest parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data);
   }
-  public static bg.energo.eventstore.v1.Aggregate parseFrom(
+  public static bg.energo.eventstore.v1.SaveEventsRequest parseFrom(
       com.google.protobuf.ByteString data,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data, extensionRegistry);
   }
-  public static bg.energo.eventstore.v1.Aggregate parseFrom(byte[] data)
+  public static bg.energo.eventstore.v1.SaveEventsRequest parseFrom(byte[] data)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data);
   }
-  public static bg.energo.eventstore.v1.Aggregate parseFrom(
+  public static bg.energo.eventstore.v1.SaveEventsRequest parseFrom(
       byte[] data,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data, extensionRegistry);
   }
-  public static bg.energo.eventstore.v1.Aggregate parseFrom(java.io.InputStream input)
+  public static bg.energo.eventstore.v1.SaveEventsRequest parseFrom(java.io.InputStream input)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseWithIOException(PARSER, input);
   }
-  public static bg.energo.eventstore.v1.Aggregate parseFrom(
+  public static bg.energo.eventstore.v1.SaveEventsRequest parseFrom(
       java.io.InputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseWithIOException(PARSER, input, extensionRegistry);
   }
-  public static bg.energo.eventstore.v1.Aggregate parseDelimitedFrom(java.io.InputStream input)
+  public static bg.energo.eventstore.v1.SaveEventsRequest parseDelimitedFrom(java.io.InputStream input)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseDelimitedWithIOException(PARSER, input);
   }
-  public static bg.energo.eventstore.v1.Aggregate parseDelimitedFrom(
+  public static bg.energo.eventstore.v1.SaveEventsRequest parseDelimitedFrom(
       java.io.InputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
   }
-  public static bg.energo.eventstore.v1.Aggregate parseFrom(
+  public static bg.energo.eventstore.v1.SaveEventsRequest parseFrom(
       com.google.protobuf.CodedInputStream input)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseWithIOException(PARSER, input);
   }
-  public static bg.energo.eventstore.v1.Aggregate parseFrom(
+  public static bg.energo.eventstore.v1.SaveEventsRequest parseFrom(
       com.google.protobuf.CodedInputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws java.io.IOException {
@@ -467,7 +434,7 @@ private static final long serialVersionUID = 0L;
   public static Builder newBuilder() {
     return DEFAULT_INSTANCE.toBuilder();
   }
-  public static Builder newBuilder(bg.energo.eventstore.v1.Aggregate prototype) {
+  public static Builder newBuilder(bg.energo.eventstore.v1.SaveEventsRequest prototype) {
     return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
   }
   public Builder toBuilder() {
@@ -483,32 +450,29 @@ private static final long serialVersionUID = 0L;
   }
   /**
    * <pre>
-   * Represents an Aggregate in the context of DDD.
-   * Aggregates in DDD are defined as cluster of objects that can be treated as single unit.
-   * A typical example for such object is Order and it's line items.
-   * The Aggregate is holding binary content as it will let the client to build the aggregate using
-   * the received event payloads.
+   * The request containing aggregate metadata and events in binary format for persisting them
+   * in the eventstore.
    * </pre>
    *
-   * Protobuf type {@code bg.energo.eventstore.v1.Aggregate}
+   * Protobuf type {@code bg.energo.eventstore.v1.SaveEventsRequest}
    */
   public static final class Builder extends
       com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-      // @@protoc_insertion_point(builder_implements:bg.energo.eventstore.v1.Aggregate)
-      bg.energo.eventstore.v1.AggregateOrBuilder {
+      // @@protoc_insertion_point(builder_implements:bg.energo.eventstore.v1.SaveEventsRequest)
+      bg.energo.eventstore.v1.SaveEventsRequestOrBuilder {
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return bg.energo.eventstore.v1.Eventstore.internal_static_bg_energo_eventstore_v1_Aggregate_descriptor;
+      return bg.energo.eventstore.v1.Eventstore.internal_static_bg_energo_eventstore_v1_SaveEventsRequest_descriptor;
     }
 
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return bg.energo.eventstore.v1.Eventstore.internal_static_bg_energo_eventstore_v1_Aggregate_fieldAccessorTable
+      return bg.energo.eventstore.v1.Eventstore.internal_static_bg_energo_eventstore_v1_SaveEventsRequest_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              bg.energo.eventstore.v1.Aggregate.class, bg.energo.eventstore.v1.Aggregate.Builder.class);
+              bg.energo.eventstore.v1.SaveEventsRequest.class, bg.energo.eventstore.v1.SaveEventsRequest.Builder.class);
     }
 
-    // Construct using bg.energo.eventstore.v1.Aggregate.newBuilder()
+    // Construct using bg.energo.eventstore.v1.SaveEventsRequest.newBuilder()
     private Builder() {
       maybeForceBuilderInitialization();
     }
@@ -530,13 +494,11 @@ private static final long serialVersionUID = 0L;
 
       aggregateType_ = "";
 
-      snapshot_ = com.google.protobuf.ByteString.EMPTY;
-
       version_ = 0;
 
       if (eventsBuilder_ == null) {
         events_ = java.util.Collections.emptyList();
-        bitField0_ = (bitField0_ & ~0x00000010);
+        bitField0_ = (bitField0_ & ~0x00000008);
       } else {
         eventsBuilder_.clear();
       }
@@ -545,33 +507,32 @@ private static final long serialVersionUID = 0L;
 
     public com.google.protobuf.Descriptors.Descriptor
         getDescriptorForType() {
-      return bg.energo.eventstore.v1.Eventstore.internal_static_bg_energo_eventstore_v1_Aggregate_descriptor;
+      return bg.energo.eventstore.v1.Eventstore.internal_static_bg_energo_eventstore_v1_SaveEventsRequest_descriptor;
     }
 
-    public bg.energo.eventstore.v1.Aggregate getDefaultInstanceForType() {
-      return bg.energo.eventstore.v1.Aggregate.getDefaultInstance();
+    public bg.energo.eventstore.v1.SaveEventsRequest getDefaultInstanceForType() {
+      return bg.energo.eventstore.v1.SaveEventsRequest.getDefaultInstance();
     }
 
-    public bg.energo.eventstore.v1.Aggregate build() {
-      bg.energo.eventstore.v1.Aggregate result = buildPartial();
+    public bg.energo.eventstore.v1.SaveEventsRequest build() {
+      bg.energo.eventstore.v1.SaveEventsRequest result = buildPartial();
       if (!result.isInitialized()) {
         throw newUninitializedMessageException(result);
       }
       return result;
     }
 
-    public bg.energo.eventstore.v1.Aggregate buildPartial() {
-      bg.energo.eventstore.v1.Aggregate result = new bg.energo.eventstore.v1.Aggregate(this);
+    public bg.energo.eventstore.v1.SaveEventsRequest buildPartial() {
+      bg.energo.eventstore.v1.SaveEventsRequest result = new bg.energo.eventstore.v1.SaveEventsRequest(this);
       int from_bitField0_ = bitField0_;
       int to_bitField0_ = 0;
       result.aggregateId_ = aggregateId_;
       result.aggregateType_ = aggregateType_;
-      result.snapshot_ = snapshot_;
       result.version_ = version_;
       if (eventsBuilder_ == null) {
-        if (((bitField0_ & 0x00000010) == 0x00000010)) {
+        if (((bitField0_ & 0x00000008) == 0x00000008)) {
           events_ = java.util.Collections.unmodifiableList(events_);
-          bitField0_ = (bitField0_ & ~0x00000010);
+          bitField0_ = (bitField0_ & ~0x00000008);
         }
         result.events_ = events_;
       } else {
@@ -609,16 +570,16 @@ private static final long serialVersionUID = 0L;
       return (Builder) super.addRepeatedField(field, value);
     }
     public Builder mergeFrom(com.google.protobuf.Message other) {
-      if (other instanceof bg.energo.eventstore.v1.Aggregate) {
-        return mergeFrom((bg.energo.eventstore.v1.Aggregate)other);
+      if (other instanceof bg.energo.eventstore.v1.SaveEventsRequest) {
+        return mergeFrom((bg.energo.eventstore.v1.SaveEventsRequest)other);
       } else {
         super.mergeFrom(other);
         return this;
       }
     }
 
-    public Builder mergeFrom(bg.energo.eventstore.v1.Aggregate other) {
-      if (other == bg.energo.eventstore.v1.Aggregate.getDefaultInstance()) return this;
+    public Builder mergeFrom(bg.energo.eventstore.v1.SaveEventsRequest other) {
+      if (other == bg.energo.eventstore.v1.SaveEventsRequest.getDefaultInstance()) return this;
       if (!other.getAggregateId().isEmpty()) {
         aggregateId_ = other.aggregateId_;
         onChanged();
@@ -627,9 +588,6 @@ private static final long serialVersionUID = 0L;
         aggregateType_ = other.aggregateType_;
         onChanged();
       }
-      if (other.getSnapshot() != com.google.protobuf.ByteString.EMPTY) {
-        setSnapshot(other.getSnapshot());
-      }
       if (other.getVersion() != 0) {
         setVersion(other.getVersion());
       }
@@ -637,7 +595,7 @@ private static final long serialVersionUID = 0L;
         if (!other.events_.isEmpty()) {
           if (events_.isEmpty()) {
             events_ = other.events_;
-            bitField0_ = (bitField0_ & ~0x00000010);
+            bitField0_ = (bitField0_ & ~0x00000008);
           } else {
             ensureEventsIsMutable();
             events_.addAll(other.events_);
@@ -650,7 +608,7 @@ private static final long serialVersionUID = 0L;
             eventsBuilder_.dispose();
             eventsBuilder_ = null;
             events_ = other.events_;
-            bitField0_ = (bitField0_ & ~0x00000010);
+            bitField0_ = (bitField0_ & ~0x00000008);
             eventsBuilder_ = 
               com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
                  getEventsFieldBuilder() : null;
@@ -672,11 +630,11 @@ private static final long serialVersionUID = 0L;
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      bg.energo.eventstore.v1.Aggregate parsedMessage = null;
+      bg.energo.eventstore.v1.SaveEventsRequest parsedMessage = null;
       try {
         parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
       } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        parsedMessage = (bg.energo.eventstore.v1.Aggregate) e.getUnfinishedMessage();
+        parsedMessage = (bg.energo.eventstore.v1.SaveEventsRequest) e.getUnfinishedMessage();
         throw e.unwrapIOException();
       } finally {
         if (parsedMessage != null) {
@@ -865,64 +823,23 @@ private static final long serialVersionUID = 0L;
       return this;
     }
 
-    private com.google.protobuf.ByteString snapshot_ = com.google.protobuf.ByteString.EMPTY;
-    /**
-     * <pre>
-     * Binary snapshot of the aggregate which to be used as initial state.
-     * </pre>
-     *
-     * <code>bytes snapshot = 3;</code>
-     */
-    public com.google.protobuf.ByteString getSnapshot() {
-      return snapshot_;
-    }
-    /**
-     * <pre>
-     * Binary snapshot of the aggregate which to be used as initial state.
-     * </pre>
-     *
-     * <code>bytes snapshot = 3;</code>
-     */
-    public Builder setSnapshot(com.google.protobuf.ByteString value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  
-      snapshot_ = value;
-      onChanged();
-      return this;
-    }
-    /**
-     * <pre>
-     * Binary snapshot of the aggregate which to be used as initial state.
-     * </pre>
-     *
-     * <code>bytes snapshot = 3;</code>
-     */
-    public Builder clearSnapshot() {
-      
-      snapshot_ = getDefaultInstance().getSnapshot();
-      onChanged();
-      return this;
-    }
-
     private int version_ ;
     /**
      * <pre>
-     * The version of the aggregate. During writing is used to perform a consistent read-modify-write.
+     * Used to perform a consistent read-modify-write.
      * </pre>
      *
-     * <code>int32 version = 4;</code>
+     * <code>int32 version = 3;</code>
      */
     public int getVersion() {
       return version_;
     }
     /**
      * <pre>
-     * The version of the aggregate. During writing is used to perform a consistent read-modify-write.
+     * Used to perform a consistent read-modify-write.
      * </pre>
      *
-     * <code>int32 version = 4;</code>
+     * <code>int32 version = 3;</code>
      */
     public Builder setVersion(int value) {
       
@@ -932,10 +849,10 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * The version of the aggregate. During writing is used to perform a consistent read-modify-write.
+     * Used to perform a consistent read-modify-write.
      * </pre>
      *
-     * <code>int32 version = 4;</code>
+     * <code>int32 version = 3;</code>
      */
     public Builder clearVersion() {
       
@@ -947,9 +864,9 @@ private static final long serialVersionUID = 0L;
     private java.util.List<bg.energo.eventstore.v1.EventPayload> events_ =
       java.util.Collections.emptyList();
     private void ensureEventsIsMutable() {
-      if (!((bitField0_ & 0x00000010) == 0x00000010)) {
+      if (!((bitField0_ & 0x00000008) == 0x00000008)) {
         events_ = new java.util.ArrayList<bg.energo.eventstore.v1.EventPayload>(events_);
-        bitField0_ |= 0x00000010;
+        bitField0_ |= 0x00000008;
        }
     }
 
@@ -961,7 +878,7 @@ private static final long serialVersionUID = 0L;
      * List of events associated with aggregate.
      * </pre>
      *
-     * <code>repeated .bg.energo.eventstore.v1.EventPayload events = 5;</code>
+     * <code>repeated .bg.energo.eventstore.v1.EventPayload events = 4;</code>
      */
     public java.util.List<bg.energo.eventstore.v1.EventPayload> getEventsList() {
       if (eventsBuilder_ == null) {
@@ -975,7 +892,7 @@ private static final long serialVersionUID = 0L;
      * List of events associated with aggregate.
      * </pre>
      *
-     * <code>repeated .bg.energo.eventstore.v1.EventPayload events = 5;</code>
+     * <code>repeated .bg.energo.eventstore.v1.EventPayload events = 4;</code>
      */
     public int getEventsCount() {
       if (eventsBuilder_ == null) {
@@ -989,7 +906,7 @@ private static final long serialVersionUID = 0L;
      * List of events associated with aggregate.
      * </pre>
      *
-     * <code>repeated .bg.energo.eventstore.v1.EventPayload events = 5;</code>
+     * <code>repeated .bg.energo.eventstore.v1.EventPayload events = 4;</code>
      */
     public bg.energo.eventstore.v1.EventPayload getEvents(int index) {
       if (eventsBuilder_ == null) {
@@ -1003,7 +920,7 @@ private static final long serialVersionUID = 0L;
      * List of events associated with aggregate.
      * </pre>
      *
-     * <code>repeated .bg.energo.eventstore.v1.EventPayload events = 5;</code>
+     * <code>repeated .bg.energo.eventstore.v1.EventPayload events = 4;</code>
      */
     public Builder setEvents(
         int index, bg.energo.eventstore.v1.EventPayload value) {
@@ -1024,7 +941,7 @@ private static final long serialVersionUID = 0L;
      * List of events associated with aggregate.
      * </pre>
      *
-     * <code>repeated .bg.energo.eventstore.v1.EventPayload events = 5;</code>
+     * <code>repeated .bg.energo.eventstore.v1.EventPayload events = 4;</code>
      */
     public Builder setEvents(
         int index, bg.energo.eventstore.v1.EventPayload.Builder builderForValue) {
@@ -1042,7 +959,7 @@ private static final long serialVersionUID = 0L;
      * List of events associated with aggregate.
      * </pre>
      *
-     * <code>repeated .bg.energo.eventstore.v1.EventPayload events = 5;</code>
+     * <code>repeated .bg.energo.eventstore.v1.EventPayload events = 4;</code>
      */
     public Builder addEvents(bg.energo.eventstore.v1.EventPayload value) {
       if (eventsBuilder_ == null) {
@@ -1062,7 +979,7 @@ private static final long serialVersionUID = 0L;
      * List of events associated with aggregate.
      * </pre>
      *
-     * <code>repeated .bg.energo.eventstore.v1.EventPayload events = 5;</code>
+     * <code>repeated .bg.energo.eventstore.v1.EventPayload events = 4;</code>
      */
     public Builder addEvents(
         int index, bg.energo.eventstore.v1.EventPayload value) {
@@ -1083,7 +1000,7 @@ private static final long serialVersionUID = 0L;
      * List of events associated with aggregate.
      * </pre>
      *
-     * <code>repeated .bg.energo.eventstore.v1.EventPayload events = 5;</code>
+     * <code>repeated .bg.energo.eventstore.v1.EventPayload events = 4;</code>
      */
     public Builder addEvents(
         bg.energo.eventstore.v1.EventPayload.Builder builderForValue) {
@@ -1101,7 +1018,7 @@ private static final long serialVersionUID = 0L;
      * List of events associated with aggregate.
      * </pre>
      *
-     * <code>repeated .bg.energo.eventstore.v1.EventPayload events = 5;</code>
+     * <code>repeated .bg.energo.eventstore.v1.EventPayload events = 4;</code>
      */
     public Builder addEvents(
         int index, bg.energo.eventstore.v1.EventPayload.Builder builderForValue) {
@@ -1119,7 +1036,7 @@ private static final long serialVersionUID = 0L;
      * List of events associated with aggregate.
      * </pre>
      *
-     * <code>repeated .bg.energo.eventstore.v1.EventPayload events = 5;</code>
+     * <code>repeated .bg.energo.eventstore.v1.EventPayload events = 4;</code>
      */
     public Builder addAllEvents(
         java.lang.Iterable<? extends bg.energo.eventstore.v1.EventPayload> values) {
@@ -1138,12 +1055,12 @@ private static final long serialVersionUID = 0L;
      * List of events associated with aggregate.
      * </pre>
      *
-     * <code>repeated .bg.energo.eventstore.v1.EventPayload events = 5;</code>
+     * <code>repeated .bg.energo.eventstore.v1.EventPayload events = 4;</code>
      */
     public Builder clearEvents() {
       if (eventsBuilder_ == null) {
         events_ = java.util.Collections.emptyList();
-        bitField0_ = (bitField0_ & ~0x00000010);
+        bitField0_ = (bitField0_ & ~0x00000008);
         onChanged();
       } else {
         eventsBuilder_.clear();
@@ -1155,7 +1072,7 @@ private static final long serialVersionUID = 0L;
      * List of events associated with aggregate.
      * </pre>
      *
-     * <code>repeated .bg.energo.eventstore.v1.EventPayload events = 5;</code>
+     * <code>repeated .bg.energo.eventstore.v1.EventPayload events = 4;</code>
      */
     public Builder removeEvents(int index) {
       if (eventsBuilder_ == null) {
@@ -1172,7 +1089,7 @@ private static final long serialVersionUID = 0L;
      * List of events associated with aggregate.
      * </pre>
      *
-     * <code>repeated .bg.energo.eventstore.v1.EventPayload events = 5;</code>
+     * <code>repeated .bg.energo.eventstore.v1.EventPayload events = 4;</code>
      */
     public bg.energo.eventstore.v1.EventPayload.Builder getEventsBuilder(
         int index) {
@@ -1183,7 +1100,7 @@ private static final long serialVersionUID = 0L;
      * List of events associated with aggregate.
      * </pre>
      *
-     * <code>repeated .bg.energo.eventstore.v1.EventPayload events = 5;</code>
+     * <code>repeated .bg.energo.eventstore.v1.EventPayload events = 4;</code>
      */
     public bg.energo.eventstore.v1.EventPayloadOrBuilder getEventsOrBuilder(
         int index) {
@@ -1197,7 +1114,7 @@ private static final long serialVersionUID = 0L;
      * List of events associated with aggregate.
      * </pre>
      *
-     * <code>repeated .bg.energo.eventstore.v1.EventPayload events = 5;</code>
+     * <code>repeated .bg.energo.eventstore.v1.EventPayload events = 4;</code>
      */
     public java.util.List<? extends bg.energo.eventstore.v1.EventPayloadOrBuilder> 
          getEventsOrBuilderList() {
@@ -1212,7 +1129,7 @@ private static final long serialVersionUID = 0L;
      * List of events associated with aggregate.
      * </pre>
      *
-     * <code>repeated .bg.energo.eventstore.v1.EventPayload events = 5;</code>
+     * <code>repeated .bg.energo.eventstore.v1.EventPayload events = 4;</code>
      */
     public bg.energo.eventstore.v1.EventPayload.Builder addEventsBuilder() {
       return getEventsFieldBuilder().addBuilder(
@@ -1223,7 +1140,7 @@ private static final long serialVersionUID = 0L;
      * List of events associated with aggregate.
      * </pre>
      *
-     * <code>repeated .bg.energo.eventstore.v1.EventPayload events = 5;</code>
+     * <code>repeated .bg.energo.eventstore.v1.EventPayload events = 4;</code>
      */
     public bg.energo.eventstore.v1.EventPayload.Builder addEventsBuilder(
         int index) {
@@ -1235,7 +1152,7 @@ private static final long serialVersionUID = 0L;
      * List of events associated with aggregate.
      * </pre>
      *
-     * <code>repeated .bg.energo.eventstore.v1.EventPayload events = 5;</code>
+     * <code>repeated .bg.energo.eventstore.v1.EventPayload events = 4;</code>
      */
     public java.util.List<bg.energo.eventstore.v1.EventPayload.Builder> 
          getEventsBuilderList() {
@@ -1248,7 +1165,7 @@ private static final long serialVersionUID = 0L;
         eventsBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
             bg.energo.eventstore.v1.EventPayload, bg.energo.eventstore.v1.EventPayload.Builder, bg.energo.eventstore.v1.EventPayloadOrBuilder>(
                 events_,
-                ((bitField0_ & 0x00000010) == 0x00000010),
+                ((bitField0_ & 0x00000008) == 0x00000008),
                 getParentForChildren(),
                 isClean());
         events_ = null;
@@ -1266,39 +1183,39 @@ private static final long serialVersionUID = 0L;
     }
 
 
-    // @@protoc_insertion_point(builder_scope:bg.energo.eventstore.v1.Aggregate)
+    // @@protoc_insertion_point(builder_scope:bg.energo.eventstore.v1.SaveEventsRequest)
   }
 
-  // @@protoc_insertion_point(class_scope:bg.energo.eventstore.v1.Aggregate)
-  private static final bg.energo.eventstore.v1.Aggregate DEFAULT_INSTANCE;
+  // @@protoc_insertion_point(class_scope:bg.energo.eventstore.v1.SaveEventsRequest)
+  private static final bg.energo.eventstore.v1.SaveEventsRequest DEFAULT_INSTANCE;
   static {
-    DEFAULT_INSTANCE = new bg.energo.eventstore.v1.Aggregate();
+    DEFAULT_INSTANCE = new bg.energo.eventstore.v1.SaveEventsRequest();
   }
 
-  public static bg.energo.eventstore.v1.Aggregate getDefaultInstance() {
+  public static bg.energo.eventstore.v1.SaveEventsRequest getDefaultInstance() {
     return DEFAULT_INSTANCE;
   }
 
-  private static final com.google.protobuf.Parser<Aggregate>
-      PARSER = new com.google.protobuf.AbstractParser<Aggregate>() {
-    public Aggregate parsePartialFrom(
+  private static final com.google.protobuf.Parser<SaveEventsRequest>
+      PARSER = new com.google.protobuf.AbstractParser<SaveEventsRequest>() {
+    public SaveEventsRequest parsePartialFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return new Aggregate(input, extensionRegistry);
+      return new SaveEventsRequest(input, extensionRegistry);
     }
   };
 
-  public static com.google.protobuf.Parser<Aggregate> parser() {
+  public static com.google.protobuf.Parser<SaveEventsRequest> parser() {
     return PARSER;
   }
 
   @java.lang.Override
-  public com.google.protobuf.Parser<Aggregate> getParserForType() {
+  public com.google.protobuf.Parser<SaveEventsRequest> getParserForType() {
     return PARSER;
   }
 
-  public bg.energo.eventstore.v1.Aggregate getDefaultInstanceForType() {
+  public bg.energo.eventstore.v1.SaveEventsRequest getDefaultInstanceForType() {
     return DEFAULT_INSTANCE;
   }
 

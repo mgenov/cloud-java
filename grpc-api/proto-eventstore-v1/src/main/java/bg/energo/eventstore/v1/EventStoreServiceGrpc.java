@@ -17,7 +17,7 @@ import static io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall;
 
 /**
  * <pre>
- * Creates and manages event objects.
+ * The Event Store service definition.
  * </pre>
  */
 @javax.annotation.Generated(
@@ -30,6 +30,38 @@ public final class EventStoreServiceGrpc {
   public static final String SERVICE_NAME = "bg.energo.eventstore.v1.EventStoreService";
 
   // Static method descriptors that strictly reflect the proto.
+  private static volatile io.grpc.MethodDescriptor<bg.energo.eventstore.v1.SaveEventsRequest,
+      bg.energo.eventstore.v1.SaveEventsResponse> getSaveAggregateEventsMethod;
+
+  @io.grpc.stub.annotations.RpcMethod(
+      fullMethodName = SERVICE_NAME + '/' + "SaveAggregateEvents",
+      requestType = bg.energo.eventstore.v1.SaveEventsRequest.class,
+      responseType = bg.energo.eventstore.v1.SaveEventsResponse.class,
+      methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
+  public static io.grpc.MethodDescriptor<bg.energo.eventstore.v1.SaveEventsRequest,
+      bg.energo.eventstore.v1.SaveEventsResponse> getSaveAggregateEventsMethod() {
+    io.grpc.MethodDescriptor<bg.energo.eventstore.v1.SaveEventsRequest, bg.energo.eventstore.v1.SaveEventsResponse> getSaveAggregateEventsMethod;
+    if ((getSaveAggregateEventsMethod = EventStoreServiceGrpc.getSaveAggregateEventsMethod) == null) {
+      synchronized (EventStoreServiceGrpc.class) {
+        if ((getSaveAggregateEventsMethod = EventStoreServiceGrpc.getSaveAggregateEventsMethod) == null) {
+          EventStoreServiceGrpc.getSaveAggregateEventsMethod = getSaveAggregateEventsMethod = 
+              io.grpc.MethodDescriptor.<bg.energo.eventstore.v1.SaveEventsRequest, bg.energo.eventstore.v1.SaveEventsResponse>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(
+                  "bg.energo.eventstore.v1.EventStoreService", "SaveAggregateEvents"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  bg.energo.eventstore.v1.SaveEventsRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  bg.energo.eventstore.v1.SaveEventsResponse.getDefaultInstance()))
+                  .setSchemaDescriptor(new EventStoreServiceMethodDescriptorSupplier("SaveAggregateEvents"))
+                  .build();
+          }
+        }
+     }
+     return getSaveAggregateEventsMethod;
+  }
+
   private static volatile io.grpc.MethodDescriptor<bg.energo.eventstore.v1.GetAggregateEventsRequest,
       bg.energo.eventstore.v1.GetAggregateEventsResponse> getGetAggregateEventsMethod;
 
@@ -87,12 +119,25 @@ public final class EventStoreServiceGrpc {
 
   /**
    * <pre>
-   * Creates and manages event objects.
+   * The Event Store service definition.
    * </pre>
    */
   public static abstract class EventStoreServiceImplBase implements io.grpc.BindableService {
 
     /**
+     * <pre>
+     * Saves aggregate events in the Event Store.
+     * </pre>
+     */
+    public void saveAggregateEvents(bg.energo.eventstore.v1.SaveEventsRequest request,
+        io.grpc.stub.StreamObserver<bg.energo.eventstore.v1.SaveEventsResponse> responseObserver) {
+      asyncUnimplementedUnaryCall(getSaveAggregateEventsMethod(), responseObserver);
+    }
+
+    /**
+     * <pre>
+     * Gets events for the provided aggregates.
+     * </pre>
      */
     public void getAggregateEvents(bg.energo.eventstore.v1.GetAggregateEventsRequest request,
         io.grpc.stub.StreamObserver<bg.energo.eventstore.v1.GetAggregateEventsResponse> responseObserver) {
@@ -101,6 +146,13 @@ public final class EventStoreServiceGrpc {
 
     @java.lang.Override public final io.grpc.ServerServiceDefinition bindService() {
       return io.grpc.ServerServiceDefinition.builder(getServiceDescriptor())
+          .addMethod(
+            getSaveAggregateEventsMethod(),
+            asyncUnaryCall(
+              new MethodHandlers<
+                bg.energo.eventstore.v1.SaveEventsRequest,
+                bg.energo.eventstore.v1.SaveEventsResponse>(
+                  this, METHODID_SAVE_AGGREGATE_EVENTS)))
           .addMethod(
             getGetAggregateEventsMethod(),
             asyncUnaryCall(
@@ -114,7 +166,7 @@ public final class EventStoreServiceGrpc {
 
   /**
    * <pre>
-   * Creates and manages event objects.
+   * The Event Store service definition.
    * </pre>
    */
   public static final class EventStoreServiceStub extends io.grpc.stub.AbstractStub<EventStoreServiceStub> {
@@ -134,6 +186,20 @@ public final class EventStoreServiceGrpc {
     }
 
     /**
+     * <pre>
+     * Saves aggregate events in the Event Store.
+     * </pre>
+     */
+    public void saveAggregateEvents(bg.energo.eventstore.v1.SaveEventsRequest request,
+        io.grpc.stub.StreamObserver<bg.energo.eventstore.v1.SaveEventsResponse> responseObserver) {
+      asyncUnaryCall(
+          getChannel().newCall(getSaveAggregateEventsMethod(), getCallOptions()), request, responseObserver);
+    }
+
+    /**
+     * <pre>
+     * Gets events for the provided aggregates.
+     * </pre>
      */
     public void getAggregateEvents(bg.energo.eventstore.v1.GetAggregateEventsRequest request,
         io.grpc.stub.StreamObserver<bg.energo.eventstore.v1.GetAggregateEventsResponse> responseObserver) {
@@ -144,7 +210,7 @@ public final class EventStoreServiceGrpc {
 
   /**
    * <pre>
-   * Creates and manages event objects.
+   * The Event Store service definition.
    * </pre>
    */
   public static final class EventStoreServiceBlockingStub extends io.grpc.stub.AbstractStub<EventStoreServiceBlockingStub> {
@@ -164,6 +230,19 @@ public final class EventStoreServiceGrpc {
     }
 
     /**
+     * <pre>
+     * Saves aggregate events in the Event Store.
+     * </pre>
+     */
+    public bg.energo.eventstore.v1.SaveEventsResponse saveAggregateEvents(bg.energo.eventstore.v1.SaveEventsRequest request) {
+      return blockingUnaryCall(
+          getChannel(), getSaveAggregateEventsMethod(), getCallOptions(), request);
+    }
+
+    /**
+     * <pre>
+     * Gets events for the provided aggregates.
+     * </pre>
      */
     public bg.energo.eventstore.v1.GetAggregateEventsResponse getAggregateEvents(bg.energo.eventstore.v1.GetAggregateEventsRequest request) {
       return blockingUnaryCall(
@@ -173,7 +252,7 @@ public final class EventStoreServiceGrpc {
 
   /**
    * <pre>
-   * Creates and manages event objects.
+   * The Event Store service definition.
    * </pre>
    */
   public static final class EventStoreServiceFutureStub extends io.grpc.stub.AbstractStub<EventStoreServiceFutureStub> {
@@ -193,6 +272,20 @@ public final class EventStoreServiceGrpc {
     }
 
     /**
+     * <pre>
+     * Saves aggregate events in the Event Store.
+     * </pre>
+     */
+    public com.google.common.util.concurrent.ListenableFuture<bg.energo.eventstore.v1.SaveEventsResponse> saveAggregateEvents(
+        bg.energo.eventstore.v1.SaveEventsRequest request) {
+      return futureUnaryCall(
+          getChannel().newCall(getSaveAggregateEventsMethod(), getCallOptions()), request);
+    }
+
+    /**
+     * <pre>
+     * Gets events for the provided aggregates.
+     * </pre>
      */
     public com.google.common.util.concurrent.ListenableFuture<bg.energo.eventstore.v1.GetAggregateEventsResponse> getAggregateEvents(
         bg.energo.eventstore.v1.GetAggregateEventsRequest request) {
@@ -201,7 +294,8 @@ public final class EventStoreServiceGrpc {
     }
   }
 
-  private static final int METHODID_GET_AGGREGATE_EVENTS = 0;
+  private static final int METHODID_SAVE_AGGREGATE_EVENTS = 0;
+  private static final int METHODID_GET_AGGREGATE_EVENTS = 1;
 
   private static final class MethodHandlers<Req, Resp> implements
       io.grpc.stub.ServerCalls.UnaryMethod<Req, Resp>,
@@ -220,6 +314,10 @@ public final class EventStoreServiceGrpc {
     @java.lang.SuppressWarnings("unchecked")
     public void invoke(Req request, io.grpc.stub.StreamObserver<Resp> responseObserver) {
       switch (methodId) {
+        case METHODID_SAVE_AGGREGATE_EVENTS:
+          serviceImpl.saveAggregateEvents((bg.energo.eventstore.v1.SaveEventsRequest) request,
+              (io.grpc.stub.StreamObserver<bg.energo.eventstore.v1.SaveEventsResponse>) responseObserver);
+          break;
         case METHODID_GET_AGGREGATE_EVENTS:
           serviceImpl.getAggregateEvents((bg.energo.eventstore.v1.GetAggregateEventsRequest) request,
               (io.grpc.stub.StreamObserver<bg.energo.eventstore.v1.GetAggregateEventsResponse>) responseObserver);
@@ -285,6 +383,7 @@ public final class EventStoreServiceGrpc {
         if (result == null) {
           serviceDescriptor = result = io.grpc.ServiceDescriptor.newBuilder(SERVICE_NAME)
               .setSchemaDescriptor(new EventStoreServiceFileDescriptorSupplier())
+              .addMethod(getSaveAggregateEventsMethod())
               .addMethod(getGetAggregateEventsMethod())
               .build();
         }

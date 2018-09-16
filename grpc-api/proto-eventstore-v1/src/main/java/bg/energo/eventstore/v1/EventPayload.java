@@ -4,6 +4,10 @@
 package bg.energo.eventstore.v1;
 
 /**
+ * <pre>
+ * Represents a single event.
+ * </pre>
+ *
  * Protobuf type {@code bg.energo.eventstore.v1.EventPayload}
  */
 public  final class EventPayload extends
@@ -369,6 +373,10 @@ private static final long serialVersionUID = 0L;
     return builder;
   }
   /**
+   * <pre>
+   * Represents a single event.
+   * </pre>
+   *
    * Protobuf type {@code bg.energo.eventstore.v1.EventPayload}
    */
   public static final class Builder extends

@@ -5,7 +5,7 @@ package bg.energo.eventstore.v1;
 
 /**
  * <pre>
- * The Aggregate get response
+ * The response containing retrieved aggregates
  * </pre>
  *
  * Protobuf type {@code bg.energo.eventstore.v1.GetAggregateEventsResponse}
@@ -300,7 +300,7 @@ private static final long serialVersionUID = 0L;
   }
   /**
    * <pre>
-   * The Aggregate get response
+   * The response containing retrieved aggregates
    * </pre>
    *
    * Protobuf type {@code bg.energo.eventstore.v1.GetAggregateEventsResponse}

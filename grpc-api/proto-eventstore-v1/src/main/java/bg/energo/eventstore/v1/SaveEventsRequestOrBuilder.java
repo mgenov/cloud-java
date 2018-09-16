@@ -3,8 +3,8 @@
 
 package bg.energo.eventstore.v1;
 
-public interface AggregateOrBuilder extends
-    // @@protoc_insertion_point(interface_extends:bg.energo.eventstore.v1.Aggregate)
+public interface SaveEventsRequestOrBuilder extends
+    // @@protoc_insertion_point(interface_extends:bg.energo.eventstore.v1.SaveEventsRequest)
     com.google.protobuf.MessageOrBuilder {
 
   /**
@@ -45,19 +45,10 @@ public interface AggregateOrBuilder extends
 
   /**
    * <pre>
-   * Binary snapshot of the aggregate which to be used as initial state.
+   * Used to perform a consistent read-modify-write.
    * </pre>
    *
-   * <code>bytes snapshot = 3;</code>
-   */
-  com.google.protobuf.ByteString getSnapshot();
-
-  /**
-   * <pre>
-   * The version of the aggregate. During writing is used to perform a consistent read-modify-write.
-   * </pre>
-   *
-   * <code>int32 version = 4;</code>
+   * <code>int32 version = 3;</code>
    */
   int getVersion();
 
@@ -66,7 +57,7 @@ public interface AggregateOrBuilder extends
    * List of events associated with aggregate.
    * </pre>
    *
-   * <code>repeated .bg.energo.eventstore.v1.EventPayload events = 5;</code>
+   * <code>repeated .bg.energo.eventstore.v1.EventPayload events = 4;</code>
    */
   java.util.List<bg.energo.eventstore.v1.EventPayload> 
       getEventsList();
@@ -75,7 +66,7 @@ public interface AggregateOrBuilder extends
    * List of events associated with aggregate.
    * </pre>
    *
-   * <code>repeated .bg.energo.eventstore.v1.EventPayload events = 5;</code>
+   * <code>repeated .bg.energo.eventstore.v1.EventPayload events = 4;</code>
    */
   bg.energo.eventstore.v1.EventPayload getEvents(int index);
   /**
@@ -83,7 +74,7 @@ public interface AggregateOrBuilder extends
    * List of events associated with aggregate.
    * </pre>
    *
-   * <code>repeated .bg.energo.eventstore.v1.EventPayload events = 5;</code>
+   * <code>repeated .bg.energo.eventstore.v1.EventPayload events = 4;</code>
    */
   int getEventsCount();
   /**
@@ -91,7 +82,7 @@ public interface AggregateOrBuilder extends
    * List of events associated with aggregate.
    * </pre>
    *
-   * <code>repeated .bg.energo.eventstore.v1.EventPayload events = 5;</code>
+   * <code>repeated .bg.energo.eventstore.v1.EventPayload events = 4;</code>
    */
   java.util.List<? extends bg.energo.eventstore.v1.EventPayloadOrBuilder> 
       getEventsOrBuilderList();
@@ -100,7 +91,7 @@ public interface AggregateOrBuilder extends
    * List of events associated with aggregate.
    * </pre>
    *
-   * <code>repeated .bg.energo.eventstore.v1.EventPayload events = 5;</code>
+   * <code>repeated .bg.energo.eventstore.v1.EventPayload events = 4;</code>
    */
   bg.energo.eventstore.v1.EventPayloadOrBuilder getEventsOrBuilder(
       int index);
