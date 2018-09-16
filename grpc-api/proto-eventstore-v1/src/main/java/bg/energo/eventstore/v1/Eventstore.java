@@ -15,15 +15,25 @@ public final class Eventstore {
         (com.google.protobuf.ExtensionRegistryLite) registry);
   }
   static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_bg_energo_eventstore_v1_GetEventsRequest_descriptor;
+    internal_static_bg_energo_eventstore_v1_GetAggregateEventsRequest_descriptor;
   static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_bg_energo_eventstore_v1_GetEventsRequest_fieldAccessorTable;
+      internal_static_bg_energo_eventstore_v1_GetAggregateEventsRequest_fieldAccessorTable;
   static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_bg_energo_eventstore_v1_GetEventsResponse_descriptor;
+    internal_static_bg_energo_eventstore_v1_GetAggregateEventsResponse_descriptor;
   static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_bg_energo_eventstore_v1_GetEventsResponse_fieldAccessorTable;
+      internal_static_bg_energo_eventstore_v1_GetAggregateEventsResponse_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_bg_energo_eventstore_v1_Aggregate_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_bg_energo_eventstore_v1_Aggregate_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_bg_energo_eventstore_v1_EventPayload_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_bg_energo_eventstore_v1_EventPayload_fieldAccessorTable;
 
   public static com.google.protobuf.Descriptors.FileDescriptor
       getDescriptor() {
@@ -34,12 +44,20 @@ public final class Eventstore {
   static {
     java.lang.String[] descriptorData = {
       "\n\020eventstore.proto\022\027bg.energo.eventstore" +
-      ".v1\"\'\n\020GetEventsRequest\022\023\n\013aggregateId\030\001" +
-      " \001(\t\"(\n\021GetEventsResponse\022\023\n\013aggregateId" +
-      "\030\001 \001(\t2w\n\021EventStoreService\022b\n\tgetEvents" +
-      "\022).bg.energo.eventstore.v1.GetEventsRequ" +
-      "est\032*.bg.energo.eventstore.v1.GetEventsR" +
-      "esponseB\002P\001b\006proto3"
+      ".v1\"1\n\031GetAggregateEventsRequest\022\024\n\014aggr" +
+      "egateIds\030\001 \003(\t\"T\n\032GetAggregateEventsResp" +
+      "onse\0226\n\naggregates\030\001 \003(\0132\".bg.energo.eve" +
+      "ntstore.v1.Aggregate\"\221\001\n\tAggregate\022\023\n\013ag" +
+      "gregateId\030\001 \001(\t\022\025\n\raggregateType\030\002 \001(\t\022\020" +
+      "\n\010snapshot\030\003 \001(\014\022\017\n\007version\030\004 \001(\005\0225\n\006eve" +
+      "nts\030\005 \003(\0132%.bg.energo.eventstore.v1.Even" +
+      "tPayload\"T\n\014EventPayload\022\014\n\004kind\030\001 \001(\t\022\021" +
+      "\n\ttimestamp\030\002 \001(\004\022\022\n\nidentityId\030\003 \001(\t\022\017\n" +
+      "\007payload\030\004 \001(\0142\222\001\n\021EventStoreService\022}\n\022" +
+      "getAggregateEvents\0222.bg.energo.eventstor" +
+      "e.v1.GetAggregateEventsRequest\0323.bg.ener" +
+      "go.eventstore.v1.GetAggregateEventsRespo" +
+      "nseB\002P\001b\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -53,18 +71,30 @@ public final class Eventstore {
       .internalBuildGeneratedFileFrom(descriptorData,
         new com.google.protobuf.Descriptors.FileDescriptor[] {
         }, assigner);
-    internal_static_bg_energo_eventstore_v1_GetEventsRequest_descriptor =
+    internal_static_bg_energo_eventstore_v1_GetAggregateEventsRequest_descriptor =
       getDescriptor().getMessageTypes().get(0);
-    internal_static_bg_energo_eventstore_v1_GetEventsRequest_fieldAccessorTable = new
+    internal_static_bg_energo_eventstore_v1_GetAggregateEventsRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_bg_energo_eventstore_v1_GetEventsRequest_descriptor,
-        new java.lang.String[] { "AggregateId", });
-    internal_static_bg_energo_eventstore_v1_GetEventsResponse_descriptor =
+        internal_static_bg_energo_eventstore_v1_GetAggregateEventsRequest_descriptor,
+        new java.lang.String[] { "AggregateIds", });
+    internal_static_bg_energo_eventstore_v1_GetAggregateEventsResponse_descriptor =
       getDescriptor().getMessageTypes().get(1);
-    internal_static_bg_energo_eventstore_v1_GetEventsResponse_fieldAccessorTable = new
+    internal_static_bg_energo_eventstore_v1_GetAggregateEventsResponse_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_bg_energo_eventstore_v1_GetEventsResponse_descriptor,
-        new java.lang.String[] { "AggregateId", });
+        internal_static_bg_energo_eventstore_v1_GetAggregateEventsResponse_descriptor,
+        new java.lang.String[] { "Aggregates", });
+    internal_static_bg_energo_eventstore_v1_Aggregate_descriptor =
+      getDescriptor().getMessageTypes().get(2);
+    internal_static_bg_energo_eventstore_v1_Aggregate_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_bg_energo_eventstore_v1_Aggregate_descriptor,
+        new java.lang.String[] { "AggregateId", "AggregateType", "Snapshot", "Version", "Events", });
+    internal_static_bg_energo_eventstore_v1_EventPayload_descriptor =
+      getDescriptor().getMessageTypes().get(3);
+    internal_static_bg_energo_eventstore_v1_EventPayload_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_bg_energo_eventstore_v1_EventPayload_descriptor,
+        new java.lang.String[] { "Kind", "Timestamp", "IdentityId", "Payload", });
   }
 
   // @@protoc_insertion_point(outer_class_scope)
