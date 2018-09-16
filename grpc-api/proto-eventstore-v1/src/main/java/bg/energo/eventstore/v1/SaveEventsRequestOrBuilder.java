@@ -95,4 +95,22 @@ public interface SaveEventsRequestOrBuilder extends
    */
   bg.energo.eventstore.v1.EventPayloadOrBuilder getEventsOrBuilder(
       int index);
+
+  /**
+   * <pre>
+   * The name of the topic to which the events to be published.
+   * </pre>
+   *
+   * <code>string topicName = 5;</code>
+   */
+  java.lang.String getTopicName();
+  /**
+   * <pre>
+   * The name of the topic to which the events to be published.
+   * </pre>
+   *
+   * <code>string topicName = 5;</code>
+   */
+  com.google.protobuf.ByteString
+      getTopicNameBytes();
 }

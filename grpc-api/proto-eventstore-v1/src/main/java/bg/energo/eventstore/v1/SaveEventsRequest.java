@@ -25,6 +25,7 @@ private static final long serialVersionUID = 0L;
     aggregateType_ = "";
     version_ = 0;
     events_ = java.util.Collections.emptyList();
+    topicName_ = "";
   }
 
   @java.lang.Override
@@ -82,6 +83,12 @@ private static final long serialVersionUID = 0L;
             }
             events_.add(
                 input.readMessage(bg.energo.eventstore.v1.EventPayload.parser(), extensionRegistry));
+            break;
+          }
+          case 42: {
+            java.lang.String s = input.readStringRequireUtf8();
+
+            topicName_ = s;
             break;
           }
         }
@@ -264,6 +271,48 @@ private static final long serialVersionUID = 0L;
     return events_.get(index);
   }
 
+  public static final int TOPICNAME_FIELD_NUMBER = 5;
+  private volatile java.lang.Object topicName_;
+  /**
+   * <pre>
+   * The name of the topic to which the events to be published.
+   * </pre>
+   *
+   * <code>string topicName = 5;</code>
+   */
+  public java.lang.String getTopicName() {
+    java.lang.Object ref = topicName_;
+    if (ref instanceof java.lang.String) {
+      return (java.lang.String) ref;
+    } else {
+      com.google.protobuf.ByteString bs = 
+          (com.google.protobuf.ByteString) ref;
+      java.lang.String s = bs.toStringUtf8();
+      topicName_ = s;
+      return s;
+    }
+  }
+  /**
+   * <pre>
+   * The name of the topic to which the events to be published.
+   * </pre>
+   *
+   * <code>string topicName = 5;</code>
+   */
+  public com.google.protobuf.ByteString
+      getTopicNameBytes() {
+    java.lang.Object ref = topicName_;
+    if (ref instanceof java.lang.String) {
+      com.google.protobuf.ByteString b = 
+          com.google.protobuf.ByteString.copyFromUtf8(
+              (java.lang.String) ref);
+      topicName_ = b;
+      return b;
+    } else {
+      return (com.google.protobuf.ByteString) ref;
+    }
+  }
+
   private byte memoizedIsInitialized = -1;
   public final boolean isInitialized() {
     byte isInitialized = memoizedIsInitialized;
@@ -288,6 +337,9 @@ private static final long serialVersionUID = 0L;
     for (int i = 0; i < events_.size(); i++) {
       output.writeMessage(4, events_.get(i));
     }
+    if (!getTopicNameBytes().isEmpty()) {
+      com.google.protobuf.GeneratedMessageV3.writeString(output, 5, topicName_);
+    }
     unknownFields.writeTo(output);
   }
 
@@ -309,6 +361,9 @@ private static final long serialVersionUID = 0L;
     for (int i = 0; i < events_.size(); i++) {
       size += com.google.protobuf.CodedOutputStream
         .computeMessageSize(4, events_.get(i));
+    }
+    if (!getTopicNameBytes().isEmpty()) {
+      size += com.google.protobuf.GeneratedMessageV3.computeStringSize(5, topicName_);
     }
     size += unknownFields.getSerializedSize();
     memoizedSize = size;
@@ -334,6 +389,8 @@ private static final long serialVersionUID = 0L;
         == other.getVersion());
     result = result && getEventsList()
         .equals(other.getEventsList());
+    result = result && getTopicName()
+        .equals(other.getTopicName());
     result = result && unknownFields.equals(other.unknownFields);
     return result;
   }
@@ -355,6 +412,8 @@ private static final long serialVersionUID = 0L;
       hash = (37 * hash) + EVENTS_FIELD_NUMBER;
       hash = (53 * hash) + getEventsList().hashCode();
     }
+    hash = (37 * hash) + TOPICNAME_FIELD_NUMBER;
+    hash = (53 * hash) + getTopicName().hashCode();
     hash = (29 * hash) + unknownFields.hashCode();
     memoizedHashCode = hash;
     return hash;
@@ -502,6 +561,8 @@ private static final long serialVersionUID = 0L;
       } else {
         eventsBuilder_.clear();
       }
+      topicName_ = "";
+
       return this;
     }
 
@@ -538,6 +599,7 @@ private static final long serialVersionUID = 0L;
       } else {
         result.events_ = eventsBuilder_.build();
       }
+      result.topicName_ = topicName_;
       result.bitField0_ = to_bitField0_;
       onBuilt();
       return result;
@@ -616,6 +678,10 @@ private static final long serialVersionUID = 0L;
             eventsBuilder_.addAllMessages(other.events_);
           }
         }
+      }
+      if (!other.getTopicName().isEmpty()) {
+        topicName_ = other.topicName_;
+        onChanged();
       }
       this.mergeUnknownFields(other.unknownFields);
       onChanged();
@@ -1171,6 +1237,95 @@ private static final long serialVersionUID = 0L;
         events_ = null;
       }
       return eventsBuilder_;
+    }
+
+    private java.lang.Object topicName_ = "";
+    /**
+     * <pre>
+     * The name of the topic to which the events to be published.
+     * </pre>
+     *
+     * <code>string topicName = 5;</code>
+     */
+    public java.lang.String getTopicName() {
+      java.lang.Object ref = topicName_;
+      if (!(ref instanceof java.lang.String)) {
+        com.google.protobuf.ByteString bs =
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        topicName_ = s;
+        return s;
+      } else {
+        return (java.lang.String) ref;
+      }
+    }
+    /**
+     * <pre>
+     * The name of the topic to which the events to be published.
+     * </pre>
+     *
+     * <code>string topicName = 5;</code>
+     */
+    public com.google.protobuf.ByteString
+        getTopicNameBytes() {
+      java.lang.Object ref = topicName_;
+      if (ref instanceof String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        topicName_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+    /**
+     * <pre>
+     * The name of the topic to which the events to be published.
+     * </pre>
+     *
+     * <code>string topicName = 5;</code>
+     */
+    public Builder setTopicName(
+        java.lang.String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      topicName_ = value;
+      onChanged();
+      return this;
+    }
+    /**
+     * <pre>
+     * The name of the topic to which the events to be published.
+     * </pre>
+     *
+     * <code>string topicName = 5;</code>
+     */
+    public Builder clearTopicName() {
+      
+      topicName_ = getDefaultInstance().getTopicName();
+      onChanged();
+      return this;
+    }
+    /**
+     * <pre>
+     * The name of the topic to which the events to be published.
+     * </pre>
+     *
+     * <code>string topicName = 5;</code>
+     */
+    public Builder setTopicNameBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      topicName_ = value;
+      onChanged();
+      return this;
     }
     public final Builder setUnknownFields(
         final com.google.protobuf.UnknownFieldSet unknownFields) {
